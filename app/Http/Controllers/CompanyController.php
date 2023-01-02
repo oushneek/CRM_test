@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CompanyCreateRequest;
+use App\Http\Requests\CompanyUpdateRequest;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -77,9 +78,10 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function edit(Company $company)
+    public function edit($id)
     {
-        //
+        $company=Company::find($id);
+        return view('company.edit', compact(['company']));
     }
 
     /**
@@ -89,9 +91,29 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(CompanyUpdateRequest $request, $id)
     {
-        //
+
+        try{
+            $data = $request->only(['id','name', 'email','website']);
+            // Logo Upload
+            if($request['logo']) {
+                $now=Carbon::now()->format('YmdHs');
+                $logo =$now.preg_replace('/\s+/', '_', $request['name'])  . '_logo.' . $request['logo']->getClientOriginalExtension();
+                $request['logo']->move(public_path('images/'), $logo);
+                $data['logo'] = $logo;
+            }
+            $company=Company::find($id);
+            $company->update($data);
+            if($company->isDirty())
+                return redirect()->route('company.index')->with('success', 'Company Updated Successfully');
+            else
+                return redirect()->route('company.index')->with('info', 'Company Saved without any change.');
+
+
+        }catch(\Exception $e){
+            return redirect()->route('company.index')->with('error', 'Could Not Update Company.');
+        }
     }
 
     /**
