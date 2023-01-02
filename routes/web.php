@@ -24,7 +24,7 @@ Auth::routes();
 // Auth Middleware Routes
 Route::group(['namespace' => 'App\Http\Controllers','middleware' => ['auth']], function () {
 
-    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
