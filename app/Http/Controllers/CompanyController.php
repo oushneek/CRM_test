@@ -16,7 +16,9 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $companies=Company::paginate(10);
+        return view('company.index', compact(['companies']));
+
     }
 
     /**
@@ -49,10 +51,10 @@ class CompanyController extends Controller
 
             $company=Company::create($data);
 
-            return redirect()->route('dashboard')->with('success', 'Company Created Successfully');
+            return redirect()->route('company.index')->with('success', 'Company Created Successfully');
 
         }catch(\Exception $e){
-            return redirect()->route('dashboard')->with('error', 'Could Not Create Company.');
+            return redirect()->route('company.index')->with('error', 'Could Not Create Company.');
         }
 
 
