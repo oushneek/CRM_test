@@ -16,10 +16,27 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
 
+// Auth Middleware Routes
+Route::group(['namespace' => 'App\Http\Controllers','middleware' => ['auth']], function () {
+
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+    // Company CRUD Routes
+
+    Route::get('companies', 'CompanyController@index')->name('company.index');
+    Route::get('company/create', 'CompanyController@create')->name('company.create');
+    Route::post('company/store', 'CompanyController@store')->name('company.store');
+    Route::get('company/{id}/show', 'CompanyController@show')->name('company.show');
+    Route::get('company/{id}/edit', 'CompanyController@edit')->name('company.edit');
+    Route::put('company/{id}/update', 'CompanyController@update')->name('company.update');
+    Route::delete('company/{id}/delete', 'CompanyController@delete')->name('company.delete');
+
+
+});
