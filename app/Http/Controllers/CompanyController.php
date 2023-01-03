@@ -118,12 +118,8 @@ class CompanyController extends Controller
             }
             $company=Company::find($id);
             $company->update($data);
-            if($company->isDirty())
-                return redirect()->route('company.index')->with('success', 'Company Updated Successfully');
-            else
-                return redirect()->route('company.index')->with('info', 'Company Saved without any change.');
-
-
+            return redirect()->route('company.index')->with('success', 'Company Updated Successfully');
+            
         }catch(\Exception $e){
             return redirect()->route('company.index')->with('error', 'Could Not Update Company.');
         }
