@@ -38,4 +38,14 @@ Route::group(['namespace' => 'App\Http\Controllers','middleware' => ['auth']], f
     Route::put('company/{id}/update', 'CompanyController@update')->name('company.update');
     Route::delete('company/{id}/delete', 'CompanyController@destroy')->name('company.delete');
 
+    // Employee CRUD Routes
+
+    Route::get('employees', 'EmployeeController@index')->name('employee.index');
+    Route::get('employee/create', 'EmployeeController@create')->name('employee.create');
+    Route::post('employee/store', 'EmployeeController@store')->name('employee.store');
+    Route::get('employee/{id}/show', 'EmployeeController@show')->name('employee.show');
+    Route::get('employee/{id}/edit', 'EmployeeController@edit')->name('employee.edit');
+    Route::put('employee/{id}/update', 'EmployeeController@update')->name('employee.update');
+    Route::delete('employee/{id}/delete', 'EmployeeController@destroy')->name('employee.delete');
+
 });
