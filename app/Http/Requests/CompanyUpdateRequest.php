@@ -28,9 +28,9 @@ class CompanyUpdateRequest extends FormRequest
 
         return [
             'name' => 'required',
-            'email' => 'nullable|unique:companies',
+            'email' => 'nullable',
             'email' => Rule::unique('companies')->where(function ($query)use($company_id) {
-                return $query->where('id','!=',$company_id);
+                return $query->where('id','!=',$company_id)->where('email','!=',null);
             }),
             'logo' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:min_width=100,min_height=100',
             'website' => 'nullable'

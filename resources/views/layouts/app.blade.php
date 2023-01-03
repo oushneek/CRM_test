@@ -7,11 +7,13 @@
 <div class="wrapper">
     @include('partials.header')
 
+
     <!-- Left side column. contains the logo and sidebar -->
     @include('partials.sidebar')
 
 <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+        @include('partials.flash-message')
         @yield('content')
     </div>
 

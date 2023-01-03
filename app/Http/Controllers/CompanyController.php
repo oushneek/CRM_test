@@ -17,8 +17,13 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies=Company::paginate(10);
-        return view('company.index', compact(['companies']));
+        try{
+            $companies=Company::paginate(10);
+            return view('company.index', compact(['companies']));
+        }catch (\Exception $e){
+            return redirect()->back()->with('error','Could Not Access.');
+        }
+
 
     }
 
@@ -29,7 +34,11 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('company.create');
+        try{
+            return view('company.create');
+        }catch (\Exception $e){
+            return redirect()->back()->with('error','Could Not Load View');
+        }
     }
 
     /**

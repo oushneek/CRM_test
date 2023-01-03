@@ -32,7 +32,10 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="name">Company Name</label>
-                                    <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" placeholder="Company Name" required>
+                                    <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" placeholder="Company Name" required autofocus>
+                                    @if ($errors->has('name'))
+                                        <span class="text-danger">{{ $errors->first('name') }}</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -41,7 +44,10 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="Company Email">
+                                    <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="Company Email" autofocus>
+                                    @if ($errors->has('email'))
+                                        <span class="text-danger">{{ $errors->first('email') }}</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -50,7 +56,10 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="logo">Company Logo <span class="text-muted" >(Image Size Minimum 100*100)</span></label>
-                                    <input type="file" id="logo" name="logo" class="form-control" value="{{ old('logo') }}">
+                                    <input type="file" id="logo" name="logo" class="form-control" value="{{ old('logo') }}" autofocus>
+                                    @if ($errors->has('logo'))
+                                        <span class="text-danger">{{ $errors->first('logo') }}</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -59,7 +68,10 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="website">Website</label>
-                                    <input type="text" id="website" name="website" class="form-control" value="{{ old('website') }}" placeholder="Company Website">
+                                    <input type="text" id="website" name="website" class="form-control" value="{{ old('website') }}" placeholder="Company Website" autofocus>
+                                    @if ($errors->has('website'))
+                                        <span class="text-danger">{{ $errors->first('website') }}</span>
+                                    @endif
                                 </div>
                             </div>
 

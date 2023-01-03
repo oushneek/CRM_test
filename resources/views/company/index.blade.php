@@ -21,7 +21,8 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <table id="example" class="table table-bordered">
+                    @if(count($companies))
+                        <table id="example" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th style="width: 5%">#</th>
@@ -60,6 +61,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    @else
+                        <h3>No Data to Dispalay</h3>
+                    @endif
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
