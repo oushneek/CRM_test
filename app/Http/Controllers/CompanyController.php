@@ -81,7 +81,11 @@ class CompanyController extends Controller
     public function edit($id)
     {
         $company=Company::find($id);
-        return view('company.edit', compact(['company']));
+        if($company) {
+            return view('company.edit', compact(['company']));
+        }
+        else
+            return redirect()->route('company.index')->with('warning', 'Could Not Access Company');
     }
 
     /**
@@ -122,8 +126,21 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
+    public function destroy($id)
     {
-        //
+        try{
+            $company=Company::find($id);
+            if($company) {
+                $company->delete();
+                return redirect()->route('company.index')->with('success', 'Company Deleted Successfully.');
+            }
+            else
+                return redirect()->route('company.index')->with('warning', 'Could Not Access Company');
+
+
+        }catch (\Exception $e){
+            return redirect()->route('company.index')->with('error', 'Unfortunately could not delete company.');
+        }
+
     }
 }

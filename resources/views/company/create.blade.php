@@ -8,7 +8,7 @@
                     <h1 class="m-0 text-dark">Create New Company</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
-                    {{--<a href="{{ route('college.index') }}" class="btn btn-sm btn-primary float-right">ALL</a>--}}
+{{--                    <a href="{{ route('company.index') }}" class="btn btn-sm btn-primary float-right">ALL</a>--}}
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -21,7 +21,7 @@
             <div class="card">
 
                 <div class="card-header" >
-{{--                    <a href="{{ route('college.index') }}" class="btn btn-sm btn-primary ">Back to Companies List</a>--}}
+                    <a href="{{ route('company.index') }}" class="btn btn-sm btn-primary ">Back to Companies List</a>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('company.store') }}" method="POST" enctype="multipart/form-data" files="true">

@@ -41,17 +41,20 @@
                                     <td>{{$company->logo}}</td>
                                     <td>{{$company->website}}</td>
                                     <td>
+                                        <div class="row">
+                                            <a class="btn btn-info btn-sm" href="{{ route('company.edit', $company->id) }}">
+                                                <i class="fas fa-pencil-alt">
+                                                </i>
+                                            </a>
 
-                                        <a class="btn btn-info btn-sm" href="{{ route('company.edit', $company->id) }}">
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                        </a>
-
-                                        <a class="btn btn-danger btn-sm deleteBtn" href="#" data-delete-url="{{ route('company.delete', $company->id) }}" data-toggle="modal" data-target="#deleteConfirmModal">
-                                            <i class="fas fa-trash">
-                                            </i>
-                                        </a>
-
+                                            <form method="POST" action="{{ route('company.delete',$company->id) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class='btn btn-danger' type='submit' value='submit' onclick= "return confirm('Are You Sure Want to Delete?')">
+                                                    <i class='fa fa-trash'> </i>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -67,32 +70,6 @@
         </div>
     </section>
 
-    <div class="modal fade" id="deleteConfirmModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Confirmation</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure to delete this ?</p>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">NO</button>
-                    <form action="#" id="deleteForm" method="POST">
-                        @method('DELETE')
-                        @csrf
-                        <button type="submit" class="btn btn-primary">YES</button>
-                    </form>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
     <!-- /.content -->
 @endsection
 
@@ -102,28 +79,4 @@
 
 
 @section('scripts')
-    <script>
-        $(document).ready(function () {
-            $('.deleteBtn').click(function (e) {
-                e.preventDefault();
-                var deleteUrl = $(this).data('delete-url');
-                $('#deleteForm').attr('action', deleteUrl);
-            })
-
-
-            $('#example').DataTable({
-              "paging": true,
-              "lengthChange": false,
-              "searching": true,
-              "ordering": true,
-              "info": true,
-              "autoWidth": false,
-
-
-            });
-
-
-
-        });
-    </script>
 @endsection

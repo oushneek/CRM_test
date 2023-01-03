@@ -36,7 +36,6 @@ Route::group(['namespace' => 'App\Http\Controllers','middleware' => ['auth']], f
     Route::get('company/{id}/show', 'CompanyController@show')->name('company.show');
     Route::get('company/{id}/edit', 'CompanyController@edit')->name('company.edit');
     Route::put('company/{id}/update', 'CompanyController@update')->name('company.update');
-    Route::delete('company/{id}/delete', 'CompanyController@delete')->name('company.delete');
-
+    Route::delete('company/{id}/delete', 'CompanyController@destroy')->name('company.delete');
 
 });
