@@ -40,7 +40,7 @@ Route::group(['namespace' => 'App\Http\Controllers','middleware' => ['auth']], f
 
     // Employee CRUD Routes
 
-    Route::get('employees', 'EmployeeController@index')->name('employee.index');
+    Route::get('employees/{company_id}', 'EmployeeController@index')->name('employee.index');
     Route::get('employee/create', 'EmployeeController@create')->name('employee.create');
     Route::post('employee/store', 'EmployeeController@store')->name('employee.store');
     Route::get('employee/{id}/show', 'EmployeeController@show')->name('employee.show');

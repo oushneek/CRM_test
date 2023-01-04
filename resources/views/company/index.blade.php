@@ -43,6 +43,10 @@
                                     <td>{{$company->website}}</td>
                                     <td>
                                         <div class="row">
+                                            <a class="btn btn-outline-success btn-sm" href="{{ route('employee.index', $company->id) }}">
+                                                <i class="fas fa-users"> Employees
+                                                </i>
+                                            </a>
                                             <a class="btn btn-info btn-sm" href="{{ route('company.edit', $company->id) }}">
                                                 <i class="fas fa-pencil-alt">
                                                 </i>
