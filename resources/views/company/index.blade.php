@@ -39,8 +39,15 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{$company->name}}</td>
                                     <td>{{$company->email}}</td>
-                                    <td>{{$company->logo}}</td>
-                                    <td>{{$company->website}}</td>
+                                    <td title="Click to See Image in new Window">
+                                        @if($company->logo!=null)
+                                            <a href="{{URL::asset('/images/'.$company->logo)}}" target="_blank">
+                                                <img src="{{ URL::asset('/images/'.$company->logo)}}" style="max-height:50px ;max-width: 50px" />                                            </a>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="//{{$company->website}}" target="_blank">{{$company->website}}</a>
+                                    </td>
                                     <td>
                                         <div class="row">
                                             <a class="btn btn-outline-success btn-sm" href="{{ route('employee.index', $company->id) }}">

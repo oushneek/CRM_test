@@ -4,9 +4,12 @@
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-sm-10">
                     <h1 class="m-0 text-dark">Employees of {{ $company->name }}</h1>
                 </div><!-- /.col -->
+
+                <a href="{{ route('company.index') }}" class="btn btn-sm btn-success float-right">Back to Companies List</a>
+
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
