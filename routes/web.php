@@ -18,7 +18,12 @@ Route::get('/', function () {
 });
 
 
-Auth::routes();
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'confirm' => false
+]);
+
 
 
 // Auth Middleware Routes
