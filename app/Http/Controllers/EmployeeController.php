@@ -117,16 +117,17 @@ class EmployeeController extends Controller
     {
         try{
             $employee=Employee::find($id);
+            $c_id=$employee->company_id;
             if($employee) {
                 $employee->delete();
-                return redirect()->back()->with('success', 'Employee Deleted Successfully.');
+                return redirect()->route('employee.index',$c_id)->with('success', 'Employee Deleted Successfully.');
             }
             else
-                return redirect()->back()->with('warning', 'Could Not Access Employee');
+                return redirect()->route('employee.index',$c_id)->with('warning', 'Could Not Access Employee');
 
 
         }catch (\Exception $e){
-            return redirect()->back()->with('error', 'Unfortunately could not delete employee.');
+            return redirect()->route('employee.index',$c_id)->with('error', 'Unfortunately could not delete employee.');
         }
     }
 }
