@@ -41,7 +41,7 @@ Route::group(['namespace' => 'App\Http\Controllers','middleware' => ['auth']], f
     // Employee CRUD Routes
 
     Route::get('employees/{company_id}', 'EmployeeController@index')->name('employee.index');
-    Route::get('employee/create', 'EmployeeController@create')->name('employee.create');
+    Route::get('employee/create/{company_id}', 'EmployeeController@create')->name('employee.create');
     Route::post('employee/store', 'EmployeeController@store')->name('employee.store');
     Route::get('employee/{id}/show', 'EmployeeController@show')->name('employee.show');
     Route::get('employee/{id}/edit', 'EmployeeController@edit')->name('employee.edit');
