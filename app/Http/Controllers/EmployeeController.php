@@ -52,7 +52,7 @@ class EmployeeController extends Controller
             $data = $request->only(['company_id','first_name','last_name', 'email','phone']);
             $employee=Employee::create($data);
 
-            return redirect()->route('employee.index',$request['company_id'])->with('success', 'Employee Successfully');
+            return redirect()->route('employee.index',$request['company_id'])->with('success', 'Employee Created Successfully');
 
         }catch(\Exception $e){
             return redirect()->route('employee.index',$request['company_id'])->with('error', 'Could Not Add Employee.');
@@ -78,7 +78,12 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employee=Employee::find($id);
+        if($employee) {
+            return view('employee.edit', compact(['employee']));
+        }
+        else
+            return redirect()->back()->with('warning', 'Could Not Access Employee');
     }
 
     /**
@@ -90,7 +95,16 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $data = $request->only(['id','first_name','last_name','email','phone','company_id']);
+
+            $employee=Employee::find($id);
+            $employee->update($data);
+            return redirect()->route('employee.index',$request['company_id'])->with('success', 'Employee Updated Successfully');
+
+        }catch(\Exception $e){
+            return redirect()->route('employee.index',$request['company_id'])->with('error', 'Could Not Update Employee.');
+        }
     }
 
     /**
