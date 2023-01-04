@@ -115,6 +115,18 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $employee=Employee::find($id);
+            if($employee) {
+                $employee->delete();
+                return redirect()->back()->with('success', 'Employee Deleted Successfully.');
+            }
+            else
+                return redirect()->back()->with('warning', 'Could Not Access Employee');
+
+
+        }catch (\Exception $e){
+            return redirect()->back()->with('error', 'Unfortunately could not delete employee.');
+        }
     }
 }
